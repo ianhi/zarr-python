@@ -17,7 +17,7 @@ Zarr-Python supports creating arrays with Numpy data types::
 Unlike Numpy arrays, Zarr arrays are designed to be persisted to storage and read by Zarr implementations in different programming languages.
 This means Zarr data types must be interpreted correctly when clients read an array. So each Zarr data type defines a procedure for
 encoding/decoding that data type to/from Zarr array metadata, and also encoding/decoding **instances** of that data type to/from
-array metadata. These serialization procedures depend on the Zarr format.
+array metadata. These serialization procedures depend on the version of the Zarr format used.
 
 Data types in Zarr version 2
 -----------------------------
