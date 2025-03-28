@@ -59,7 +59,7 @@ Zarr V3 brings several key changes to how data types are represented:
 Data types in Zarr-Python
 -------------------------
 
-The two Zarr formats that Zarr-Python supports specify data types in two different ways:
+The two Zarr formats that Zarr-Python supports specify data types differently:
 data types in Zarr version 2 are encoded as Numpy-compatible strings, while data types in Zarr version
 3 are encoded as either strings or ``JSON`` objects,
 and the Zarr V3 data types don't have any associated endianness information, unlike Zarr V2 data types.
