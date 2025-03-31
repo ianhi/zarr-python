@@ -46,6 +46,7 @@ extensions = [
     "sphinx_copybutton",
     "sphinx_design",
     'sphinx_reredirects',
+    'notfound.extension'
 ]
 
 issues_github_path = "zarr-developers/zarr-python"
