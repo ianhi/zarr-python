@@ -7,10 +7,13 @@ from typing import TYPE_CHECKING, Literal, TypeAlias, TypedDict, cast
 if TYPE_CHECKING:
     from typing import NotRequired
 
+    from zarr.types import (
+        JSON,
+        ChunkCoords,
+    )
+
 from zarr.abc.metadata import Metadata
 from zarr.core.common import (
-    JSON,
-    ChunkCoords,
     parse_named_configuration,
 )
 

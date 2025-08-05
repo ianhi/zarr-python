@@ -18,7 +18,6 @@ if TYPE_CHECKING:
     import numpy.typing as npt
 
     from zarr.core.buffer import Buffer, BufferPrototype
-    from zarr.core.common import ChunkCoords
     from zarr.core.dtype.wrapper import (
         TBaseDType,
         TBaseScalar,
@@ -26,6 +25,7 @@ if TYPE_CHECKING:
         TScalar_co,
         ZDType,
     )
+    from zarr.types import ChunkCoords
 
 import json
 from dataclasses import dataclass, field, fields, replace
@@ -36,14 +36,16 @@ import numpy as np
 from zarr.core.array_spec import ArrayConfig, ArraySpec
 from zarr.core.chunk_key_encodings import parse_separator
 from zarr.core.common import (
-    JSON,
     ZARRAY_JSON,
     ZATTRS_JSON,
-    MemoryOrder,
     parse_shapelike,
 )
 from zarr.core.config import config, parse_indexing_order
 from zarr.core.metadata.common import parse_attributes
+from zarr.types import (
+    JSON,
+    MemoryOrder,
+)
 
 
 class ArrayV2MetadataDict(TypedDict):
