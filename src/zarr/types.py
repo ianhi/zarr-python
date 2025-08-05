@@ -108,7 +108,7 @@ else:
     Store = TypeVar("Store")
     StorePath = TypeVar("StorePath")
 
-StoreLike: TypeAlias = Store | StorePath | PathLike[str] | str | dict[str, Any] | Mapping[str, Any]
+StoreLike: TypeAlias = Union[Store, StorePath, PathLike[str], str, dict[str, Any], Mapping[str, Any]]
 """Store-like object. Can be a Store, StorePath, Path, str, or dict."""
 
 # Array types with proper numpy typing
@@ -118,10 +118,10 @@ else:
     NDArrayLike: TypeAlias = "numpy.ndarray[Any, Any] | numpy.generic"
 """N-dimensional array-like object."""
 
-NDArrayLikeOrScalar: TypeAlias = NDArrayLike | Any
+NDArrayLikeOrScalar: TypeAlias = Union[NDArrayLike, Any]
 """N-dimensional array-like object or scalar value."""
 
-ArrayLike: TypeAlias = Sequence[Any] | NDArrayLike
+ArrayLike: TypeAlias = Union[Sequence[Any], NDArrayLike]
 """Array-like object."""
 
 # ZDType - special handling for strong typing
@@ -280,7 +280,7 @@ class SuffixByteRequest:
     suffix: int
 
 
-ByteRequest: TypeAlias = RangeByteRequest | OffsetByteRequest | SuffixByteRequest
+ByteRequest: TypeAlias = Union[RangeByteRequest, OffsetByteRequest, SuffixByteRequest]
 """Byte range request."""
 
 __all__ = [
