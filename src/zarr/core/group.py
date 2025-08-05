@@ -35,24 +35,18 @@ from zarr.core.array import (
 from zarr.core.attributes import Attributes
 from zarr.core.buffer import default_buffer_prototype
 from zarr.core.common import (
-    JSON,
     ZARR_JSON,
     ZARRAY_JSON,
     ZATTRS_JSON,
     ZGROUP_JSON,
     ZMETADATA_V2_JSON,
-    ChunkCoords,
-    DimensionNames,
-    NodeType,
-    ShapeLike,
-    ZarrFormat,
     parse_shapelike,
 )
 from zarr.core.config import config
 from zarr.core.metadata import ArrayV2Metadata, ArrayV3Metadata
 from zarr.core.sync import SyncMixin, sync
 from zarr.errors import ContainsArrayError, ContainsGroupError, MetadataValidationError
-from zarr.storage import StoreLike, StorePath
+from zarr.storage import StorePath
 from zarr.storage._common import ensure_no_existing_node, make_store_path
 from zarr.storage._utils import _join_paths, _normalize_path_keys, normalize_path
 
@@ -70,9 +64,18 @@ if TYPE_CHECKING:
 
     from zarr.core.array_spec import ArrayConfig, ArrayConfigLike
     from zarr.core.buffer import Buffer, BufferPrototype
-    from zarr.core.chunk_key_encodings import ChunkKeyEncodingLike
-    from zarr.core.common import MemoryOrder
-    from zarr.core.dtype import ZDTypeLike
+    from zarr.types import (
+        JSON,
+        ChunkCoords,
+        ChunkKeyEncodingLike,
+        DimensionNames,
+        MemoryOrder,
+        NodeType,
+        ShapeLike,
+        StoreLike,
+        ZarrFormat,
+        ZDTypeLike,
+    )
 
 logger = logging.getLogger("zarr.group")
 

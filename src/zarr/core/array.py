@@ -45,20 +45,13 @@ from zarr.core.buffer.cpu import buffer_prototype as cpu_buffer_prototype
 from zarr.core.chunk_grids import RegularChunkGrid, _auto_partition, normalize_chunks
 from zarr.core.chunk_key_encodings import (
     ChunkKeyEncoding,
-    ChunkKeyEncodingLike,
     DefaultChunkKeyEncoding,
     V2ChunkKeyEncoding,
 )
 from zarr.core.common import (
-    JSON,
     ZARR_JSON,
     ZARRAY_JSON,
     ZATTRS_JSON,
-    ChunkCoords,
-    DimensionNames,
-    MemoryOrder,
-    ShapeLike,
-    ZarrFormat,
     _default_zarr_format,
     _warn_order_kwarg,
     ceildiv,
@@ -72,7 +65,6 @@ from zarr.core.dtype import (
     VariableLengthBytes,
     VariableLengthUTF8,
     ZDType,
-    ZDTypeLike,
     parse_dtype,
 )
 from zarr.core.dtype.common import HasEndianness, HasItemSize, HasObjectCodec
@@ -106,13 +98,10 @@ from zarr.core.metadata import (
     ArrayMetadata,
     ArrayMetadataDict,
     ArrayV2Metadata,
-    ArrayV2MetadataDict,
     ArrayV3Metadata,
-    ArrayV3MetadataDict,
     T_ArrayMetadata,
 )
 from zarr.core.metadata.v2 import (
-    CompressorLikev2,
     get_object_codec_id,
     parse_compressor,
     parse_filters,
@@ -128,6 +117,19 @@ from zarr.registry import (
 )
 from zarr.storage._common import StorePath, ensure_no_existing_node, make_store_path
 from zarr.storage._utils import _relativize_path
+from zarr.types import (
+    JSON,
+    ArrayV2MetadataDict,
+    ArrayV3MetadataDict,
+    ChunkCoords,
+    ChunkKeyEncodingLike,
+    CompressorLikev2,
+    DimensionNames,
+    MemoryOrder,
+    ShapeLike,
+    ZarrFormat,
+    ZDTypeLike,
+)
 
 if TYPE_CHECKING:
     from collections.abc import Iterator, Sequence
@@ -139,7 +141,7 @@ if TYPE_CHECKING:
     from zarr.codecs.sharding import ShardingCodecIndexLocation
     from zarr.core.dtype.wrapper import TBaseDType, TBaseScalar
     from zarr.core.group import AsyncGroup
-    from zarr.storage import StoreLike
+    from zarr.types import StoreLike
 
 
 # Array and AsyncArray are defined in the base ``zarr`` namespace
