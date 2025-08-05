@@ -58,6 +58,103 @@ autoapi_root = "api"
 autoapi_keep_files = True
 autoapi_options = [ 'members', 'undoc-members', 'show-inheritance', 'show-module-summary', 'imported-members', 'inherited-members']
 
+# Type alias mapping for proper cross-referencing
+autodoc_type_aliases = {
+    # Type aliases - all mapped to zarr.types for consistent linking
+    'StoreLike': 'zarr.types.StoreLike',
+    'ByteRequest': 'zarr.types.ByteRequest',
+    'RangeByteRequest': 'zarr.types.RangeByteRequest',
+    'OffsetByteRequest': 'zarr.types.OffsetByteRequest',
+    'SuffixByteRequest': 'zarr.types.SuffixByteRequest',
+    'ChunkKeyEncodingLike': 'zarr.types.ChunkKeyEncodingLike',
+    'ArrayMetadata': 'zarr.types.ArrayMetadata',
+    'ArrayMetadataDict': 'zarr.types.ArrayMetadataDict',
+    'ArrayV2Metadata': 'zarr.core.metadata.v2.ArrayV2Metadata',
+    'ArrayV3Metadata': 'zarr.core.metadata.v3.ArrayV3Metadata',
+    'ArrayV2MetadataDict': 'zarr.types.ArrayV2MetadataDict',
+    'ArrayV3MetadataDict': 'zarr.types.ArrayV3MetadataDict',
+    'CompressorLikev2': 'zarr.types.CompressorLikev2',
+    'FiltersLike': 'zarr.types.FiltersLike',
+    'CompressorLike': 'zarr.types.CompressorLike',
+    'CompressorsLike': 'zarr.types.CompressorsLike',
+    'SerializerLike': 'zarr.types.SerializerLike',
+    'ShardsLike': 'zarr.types.ShardsLike',
+    'ZDTypeLike': 'zarr.types.ZDTypeLike',
+    'ZarrFormat': 'zarr.types.ZarrFormat',
+    # Alternative paths for types that might be referenced differently
+    'zarr.core.common.ZarrFormat': 'zarr.types.ZarrFormat',
+    'zarr.core.common.MemoryOrder': 'zarr.types.MemoryOrder',
+    'zarr.core.common.JSON': 'zarr.types.JSON',
+    'zarr.core.common.ChunkCoords': 'zarr.types.ChunkCoords',
+    'zarr.core.common.ShapeLike': 'zarr.types.ShapeLike',
+    'zarr.core.common.NodeType': 'zarr.types.NodeType',
+    'zarr.core.common.AccessModeLiteral': 'zarr.types.AccessModeLiteral',
+    'zarr.core.common.BytesLike': 'zarr.types.BytesLike',
+    'zarr.core.common.ChunkCoordsLike': 'zarr.types.ChunkCoordsLike',
+    'zarr.core.common.DimensionNames': 'zarr.types.DimensionNames',
+    
+    # Core classes frequently used in type hints
+    'Array': 'zarr.core.array.Array',
+    'AsyncArray': 'zarr.core.array.AsyncArray',
+    'Group': 'zarr.core.group.Group',
+    'AsyncGroup': 'zarr.core.group.AsyncGroup',
+    'Store': 'zarr.abc.store.Store',
+    'StorePath': 'zarr.storage.StorePath',
+    
+    # Buffer types
+    'Buffer': 'zarr.abc.buffer.Buffer',
+    'NDBuffer': 'zarr.abc.buffer.NDBuffer',
+    'BufferPrototype': 'zarr.abc.buffer.BufferPrototype',
+    
+    # Codec types
+    'BaseCodec': 'zarr.types.BaseCodec',
+    'Codec': 'zarr.types.Codec',
+    'CodecPipeline': 'zarr.types.CodecPipeline',
+    'ArrayArrayCodec': 'zarr.types.ArrayArrayCodec',
+    'ArrayBytesCodec': 'zarr.types.ArrayBytesCodec',
+    'BytesBytesCodec': 'zarr.types.BytesBytesCodec',
+    
+    # Array config types  
+    'ArrayConfig': 'zarr.types.ArrayConfig',
+    'ArrayConfigLike': 'zarr.types.ArrayConfigLike',
+    
+    # Chunk key encoding types
+    'ChunkKeyEncoding': 'zarr.types.ChunkKeyEncoding',
+    'ChunkKeyEncodingLike': 'zarr.types.ChunkKeyEncodingLike',
+    
+    # Common types - all from zarr.types
+    'ArraySpec': 'zarr.core.array_spec.ArraySpec',
+    'ChunkCoords': 'zarr.types.ChunkCoords',
+    'JSON': 'zarr.types.JSON',
+    'MemoryOrder': 'zarr.types.MemoryOrder',
+    'PathLike': 'zarr.api.asynchronous.PathLike',
+    'NodeType': 'zarr.types.NodeType',
+    'AccessModeLiteral': 'zarr.types.AccessModeLiteral',
+    'BytesLike': 'zarr.types.BytesLike',
+    'ShapeLike': 'zarr.types.ShapeLike',
+    'ChunkCoordsLike': 'zarr.types.ChunkCoordsLike',
+    'DimensionNames': 'zarr.types.DimensionNames',
+    'ArrayLike': 'zarr.types.ArrayLike',
+    'NDArrayLike': 'zarr.types.NDArrayLike',
+    'NDArrayLikeOrScalar': 'zarr.types.NDArrayLikeOrScalar',
+    
+    # Protocols and Abstract Base Classes
+    'ByteGetter': 'zarr.types.ByteGetter',
+    'ByteSetter': 'zarr.types.ByteSetter',
+    'Indexer': 'zarr.core.indexing.Indexer',
+    
+    # Enums
+    'Order': 'zarr.types.Order',
+    'BloscShuffle': 'zarr.types.BloscShuffle',
+    'BloscCname': 'zarr.types.BloscCname',
+    'ShardingCodecIndexLocation': 'zarr.types.ShardingCodecIndexLocation',
+    'Endian': 'zarr.types.Endian',
+    
+    # Additional commonly used types from specific modules
+    'ZDType': 'zarr.core.dtype.ZDType',
+    'SupportsStr': 'zarr.core.dtype.npy.string.SupportsStr',
+}
+
 def skip_submodules(
         app: sphinx.application.Sphinx,
         what: str,
@@ -378,6 +475,9 @@ intersphinx_mapping = {
     "numpy": ("https://numpy.org/doc/stable/", None),
     "numcodecs": ("https://numcodecs.readthedocs.io/en/stable/", None),
     "obstore": ("https://developmentseed.org/obstore/latest/", None),
+    "fsspec": ("https://filesystem-spec.readthedocs.io/en/latest/", None),
+    "dask": ("https://docs.dask.org/en/stable/", None),
+    "xarray": ("https://docs.xarray.dev/en/stable/", None),
 }
 
 
@@ -385,3 +485,6 @@ intersphinx_mapping = {
 copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
 copybutton_line_continuation_character = "\\"
 copybutton_prompt_is_regexp = True
+
+# linkcheck configuration
+linkcheck_allowed_redirects = {}

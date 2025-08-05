@@ -14,6 +14,7 @@ Zarr-Python
     release-notes
     developers/index
     about
+    debug_types
 
 **Version**: |version|
 
