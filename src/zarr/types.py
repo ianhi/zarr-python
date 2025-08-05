@@ -89,12 +89,21 @@ if TYPE_CHECKING:
     DefaultFillValue: TypeAlias = _DefaultFillValue
     ZDType: TypeAlias = _ZDType
 else:
-    Array: TypeAlias = "zarr.core.array.Array[Any]"
-    AsyncArray: TypeAlias = "zarr.core.array.AsyncArray[Any]"
-    Group: TypeAlias = "zarr.core.group.Group"
-    AsyncGroup: TypeAlias = "zarr.core.group.AsyncGroup"
-    DefaultFillValue: TypeAlias = "zarr.core.common.DefaultFillValue"
-    ZDType: TypeAlias = "zarr.core.dtype.ZDType"
+    # Import at runtime for autoapi to resolve (with careful circular import handling)
+    try:
+        # These imports might cause circular imports, so handle them carefully
+        from zarr.core.array import Array, AsyncArray
+        from zarr.core.group import Group, AsyncGroup
+        from zarr.core.common import DefaultFillValue
+        from zarr.core.dtype import ZDType
+    except ImportError:
+        # Fallback to string forward references
+        Array: TypeAlias = "zarr.core.array.Array[Any]"
+        AsyncArray: TypeAlias = "zarr.core.array.AsyncArray[Any]"
+        Group: TypeAlias = "zarr.core.group.Group"
+        AsyncGroup: TypeAlias = "zarr.core.group.AsyncGroup"
+        DefaultFillValue: TypeAlias = "zarr.core.common.DefaultFillValue"
+        ZDType: TypeAlias = "zarr.core.dtype.ZDType"
 """Core Zarr classes."""
 
 # Store types with forward references
@@ -105,6 +114,7 @@ if TYPE_CHECKING:
     Store: TypeAlias = _Store
     StorePath: TypeAlias = _StorePath
 else:
+    # Import at runtime for autoapi to resolve
     Store = TypeVar("Store")
     StorePath = TypeVar("StorePath")
 
@@ -363,4 +373,19 @@ __all__ = [
     "CodecPipeline",
     "Codec",
 ]
+
+# Post-import patching for types that have circular import issues
+# This runs after the module is fully loaded to avoid circular dependencies
+if not TYPE_CHECKING:
+    try:
+        from zarr.storage._common import StorePath as _StorePath_Runtime
+        StorePath = _StorePath_Runtime
+        
+        from zarr.abc.store import Store as _Store_Runtime
+        Store = _Store_Runtime
+        
+        # Update StoreLike with the real types
+        StoreLike = Union[Store, StorePath, PathLike[str], str, dict[str, Any], Mapping[str, Any]]
+    except ImportError:
+        pass  # Keep the TypeVar fallbacks
 
