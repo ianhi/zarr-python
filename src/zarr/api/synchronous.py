@@ -6,7 +6,7 @@ from typing_extensions import deprecated
 
 import zarr.api.asynchronous as async_api
 import zarr.core.array
-from zarr.core.array import DEFAULT_FILL_VALUE, Array, AsyncArray, CompressorLike
+from zarr.core.array import DEFAULT_FILL_VALUE, Array, AsyncArray
 from zarr.core.group import Group
 from zarr.core.sync import sync
 from zarr.core.sync_group import create_hierarchy
@@ -18,28 +18,28 @@ if TYPE_CHECKING:
     import numpy as np
     import numpy.typing as npt
 
-    from zarr.abc.codec import Codec
     from zarr.api.asynchronous import ArrayLike, PathLike
-    from zarr.core.array import (
-        CompressorsLike,
-        FiltersLike,
-        SerializerLike,
-        ShardsLike,
-    )
-    from zarr.core.array_spec import ArrayConfigLike
-    from zarr.core.buffer import NDArrayLike, NDArrayLikeOrScalar
-    from zarr.core.chunk_key_encodings import ChunkKeyEncoding, ChunkKeyEncodingLike
-    from zarr.core.common import (
+    from zarr.types import (
         JSON,
         AccessModeLiteral,
+        ArrayConfigLike,
         ChunkCoords,
+        ChunkKeyEncodingLike,
+        Codec,
+        CompressorLike,
+        CompressorsLike,
         DimensionNames,
+        FiltersLike,
         MemoryOrder,
+        NDArrayLike,
+        NDArrayLikeOrScalar,
+        SerializerLike,
         ShapeLike,
+        ShardsLike,
+        StoreLike,
         ZarrFormat,
+        ZDTypeLike,
     )
-    from zarr.core.dtype import ZDTypeLike
-    from zarr.storage import StoreLike
 
 __all__ = [
     "array",

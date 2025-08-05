@@ -14,24 +14,31 @@ from zarr.core.array import (
     DEFAULT_FILL_VALUE,
     Array,
     AsyncArray,
-    CompressorLike,
     create_array,
     from_array,
     get_array_metadata,
 )
-from zarr.core.array_spec import ArrayConfigLike, parse_array_config
-from zarr.core.buffer import NDArrayLike
+from zarr.core.array_spec import parse_array_config
 from zarr.core.common import (
-    JSON,
-    AccessModeLiteral,
-    ChunkCoords,
-    DimensionNames,
-    MemoryOrder,
-    ZarrFormat,
     _default_zarr_format,
     _warn_write_empty_chunks_kwarg,
 )
-from zarr.core.dtype import ZDTypeLike, get_data_type_from_native_dtype
+from zarr.core.buffer import NDArrayLike
+from zarr.types import (
+    JSON,
+    AccessModeLiteral,
+    ArrayConfigLike,
+    ChunkCoords,
+    ChunkKeyEncodingLike,
+    Codec,
+    CompressorLike,
+    DimensionNames,
+    MemoryOrder,
+    StoreLike,
+    ZarrFormat,
+    ZDTypeLike,
+)
+from zarr.core.dtype import get_data_type_from_native_dtype
 from zarr.core.group import (
     AsyncGroup,
     ConsolidatedMetadata,
@@ -47,11 +54,8 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
 
     import numcodecs.abc
-
-    from zarr.abc.codec import Codec
+    
     from zarr.core.buffer import NDArrayLikeOrScalar
-    from zarr.core.chunk_key_encodings import ChunkKeyEncoding
-    from zarr.storage import StoreLike
 
     # TODO: this type could use some more thought
     ArrayLike = AsyncArray[ArrayV2Metadata] | AsyncArray[ArrayV3Metadata] | Array | npt.NDArray[Any]
