@@ -220,8 +220,12 @@ if TYPE_CHECKING:
     ArrayConfig: TypeAlias = _ArrayConfig
     ArrayConfigLike: TypeAlias = _ArrayConfigLike
 else:
-    ArrayConfig = TypeVar("ArrayConfig")
-    ArrayConfigLike = TypeVar("ArrayConfigLike")
+    # Import at runtime for autoapi to resolve
+    try:
+        from zarr.core.array_spec import ArrayConfig, ArrayConfigLike
+    except ImportError:
+        ArrayConfig = TypeVar("ArrayConfig")
+        ArrayConfigLike = TypeVar("ArrayConfigLike")
 """Array configuration specification."""
 
 # Codec class types
@@ -239,12 +243,17 @@ if TYPE_CHECKING:
     CodecPipeline: TypeAlias = _CodecPipeline[Any]
     Codec: TypeAlias = _BaseCodec[Any, Any]
 else:
-    BaseCodec = TypeVar("BaseCodec")
-    ArrayArrayCodec = TypeVar("ArrayArrayCodec")
-    ArrayBytesCodec = TypeVar("ArrayBytesCodec")
-    BytesBytesCodec = TypeVar("BytesBytesCodec")
-    CodecPipeline = TypeVar("CodecPipeline")
-    Codec = BaseCodec  # Alias to the TypeVar
+    # Import at runtime for autoapi to resolve
+    try:
+        from zarr.abc.codec import BaseCodec, ArrayArrayCodec, ArrayBytesCodec, BytesBytesCodec, CodecPipeline
+        Codec = BaseCodec  # Alias to the imported class
+    except ImportError:
+        BaseCodec = TypeVar("BaseCodec")
+        ArrayArrayCodec = TypeVar("ArrayArrayCodec")
+        ArrayBytesCodec = TypeVar("ArrayBytesCodec")
+        BytesBytesCodec = TypeVar("BytesBytesCodec")
+        CodecPipeline = TypeVar("CodecPipeline")
+        Codec = BaseCodec  # Alias to the TypeVar
 """Codec types for data transformation."""
 
 # Store protocols
