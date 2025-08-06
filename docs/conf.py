@@ -59,6 +59,8 @@ autoapi_keep_files = True
 autoapi_options = [ 'members', 'undoc-members', 'show-inheritance', 'show-module-summary', 'imported-members', 'inherited-members']
 
 # Type alias mapping for proper cross-referencing
+# Note: ArrayConfigLike and Codec have autoapi import resolution issues
+# but are available at runtime and properly defined in zarr.types
 autodoc_type_aliases = {
     # Type aliases - all mapped to zarr.types for consistent linking
     'StoreLike': 'zarr.types.StoreLike',
@@ -92,7 +94,7 @@ autodoc_type_aliases = {
     'zarr.core.common.BytesLike': 'zarr.types.BytesLike',
     'zarr.core.common.ChunkCoordsLike': 'zarr.types.ChunkCoordsLike',
     'zarr.core.common.DimensionNames': 'zarr.types.DimensionNames',
-    
+
     # Core classes frequently used in type hints
     'Array': 'zarr.core.array.Array',
     'AsyncArray': 'zarr.core.array.AsyncArray',
@@ -100,12 +102,12 @@ autodoc_type_aliases = {
     'AsyncGroup': 'zarr.core.group.AsyncGroup',
     'Store': 'zarr.abc.store.Store',
     'StorePath': 'zarr.storage.StorePath',
-    
+
     # Buffer types
     'Buffer': 'zarr.abc.buffer.Buffer',
     'NDBuffer': 'zarr.abc.buffer.NDBuffer',
     'BufferPrototype': 'zarr.abc.buffer.BufferPrototype',
-    
+
     # Codec types
     'BaseCodec': 'zarr.types.BaseCodec',
     'Codec': 'zarr.types.Codec',
@@ -113,15 +115,15 @@ autodoc_type_aliases = {
     'ArrayArrayCodec': 'zarr.types.ArrayArrayCodec',
     'ArrayBytesCodec': 'zarr.types.ArrayBytesCodec',
     'BytesBytesCodec': 'zarr.types.BytesBytesCodec',
-    
-    # Array config types  
+
+    # Array config types
     'ArrayConfig': 'zarr.types.ArrayConfig',
     'ArrayConfigLike': 'zarr.types.ArrayConfigLike',
-    
+
     # Chunk key encoding types
     'ChunkKeyEncoding': 'zarr.types.ChunkKeyEncoding',
     'ChunkKeyEncodingLike': 'zarr.types.ChunkKeyEncodingLike',
-    
+
     # Common types - all from zarr.types
     'ArraySpec': 'zarr.core.array_spec.ArraySpec',
     'ChunkCoords': 'zarr.types.ChunkCoords',
@@ -137,19 +139,19 @@ autodoc_type_aliases = {
     'ArrayLike': 'zarr.types.ArrayLike',
     'NDArrayLike': 'zarr.types.NDArrayLike',
     'NDArrayLikeOrScalar': 'zarr.types.NDArrayLikeOrScalar',
-    
+
     # Protocols and Abstract Base Classes
     'ByteGetter': 'zarr.types.ByteGetter',
     'ByteSetter': 'zarr.types.ByteSetter',
     'Indexer': 'zarr.core.indexing.Indexer',
-    
+
     # Enums
     'Order': 'zarr.types.Order',
     'BloscShuffle': 'zarr.types.BloscShuffle',
     'BloscCname': 'zarr.types.BloscCname',
     'ShardingCodecIndexLocation': 'zarr.types.ShardingCodecIndexLocation',
     'Endian': 'zarr.types.Endian',
-    
+
     # Additional commonly used types from specific modules
     'ZDType': 'zarr.core.dtype.ZDType',
     'SupportsStr': 'zarr.core.dtype.npy.string.SupportsStr',

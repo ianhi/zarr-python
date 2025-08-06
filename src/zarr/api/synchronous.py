@@ -623,7 +623,7 @@ def create(
     # v3 only
     chunk_shape: ChunkCoords | int | None = None,
     chunk_key_encoding: (
-        ChunkKeyEncoding
+        ChunkKeyEncodingLike
         | tuple[Literal["default"], Literal[".", "/"]]
         | tuple[Literal["v2"], Literal[".", "/"]]
         | None
