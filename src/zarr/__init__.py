@@ -1,3 +1,4 @@
+from zarr import types
 from zarr._version import version as __version__
 from zarr.api.synchronous import (
     array,
@@ -120,6 +121,7 @@ __all__ = [
     "save_array",
     "save_group",
     "tree",
+    "types",
     "zeros",
     "zeros_like",
 ]
